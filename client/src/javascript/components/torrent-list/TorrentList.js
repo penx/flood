@@ -1,16 +1,12 @@
-import {defineMessages, formatMessage, FormattedMessage, injectIntl} from 'react-intl';
+import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import _ from 'lodash';
-import classNames from 'classnames';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import ContextMenu from '../general/ContextMenu';
 import CustomScrollbars from '../general/CustomScrollbars';
 import EventTypes from '../../constants/EventTypes';
 import ListViewport from '../general/ListViewport';
 import LoadingIndicator from '../general/LoadingIndicator';
-import PriorityLevels from '../../constants/PriorityLevels';
 import PriorityMeter from '../general/filesystem/PriorityMeter';
 import SettingsStore from '../../stores/SettingsStore';
 import TableHeading from './TableHeading';
@@ -296,6 +292,8 @@ class TorrentListContainer extends React.Component {
       case 'set-priority':
         this.state.handleTorrentPriorityChange(event);
         break;
+      default:
+        break;
     }
   }
 
@@ -503,7 +501,7 @@ class TorrentListContainer extends React.Component {
 
   renderListItem(index) {
     const selectedTorrents = TorrentStore.getSelectedTorrents();
-    const {displayedProperties, torrentListViewSize, torrents} = this.state;
+    const {displayedProperties, torrentListViewSize, torrentListColumnWidths, torrents} = this.state;
     const torrent = torrents[index];
     const {hash} = torrent;
 
@@ -517,8 +515,8 @@ class TorrentListContainer extends React.Component {
         index={index}
         isCondensed={torrentListViewSize === 'condensed'}
         key={hash}
-        columns={this.state.displayedProperties}
-        propWidths={this.state.torrentListColumnWidths}
+        columns={displayedProperties}
+        propWidths={torrentListColumnWidths}
         selected={selectedTorrents.includes(hash)}
         torrent={torrent} />
     );
