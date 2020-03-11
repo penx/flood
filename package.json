@@ -24,7 +24,7 @@
     "geoip-country-only": "^1.1.8",
     "jsonwebtoken": "^7.0.1",
     "lodash": "^4.3.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.0",
     "moment": "^2.14.1",
     "morgan": "^1.5.3",
     "multer": "^1.1.0",
